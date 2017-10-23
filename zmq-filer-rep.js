@@ -3,7 +3,7 @@
 const
     fs = require('fs'),
     zmq = require('zmq'),
-
+    filename = 'target.txt',
     responder = zmq.socket('rep');
 
 responder.on('message',function(data){
@@ -23,8 +23,20 @@ responder.on('message',function(data){
 
         console.log("done.");
     });
+
 });
 
+/*
+    쌍방향 통신을 만드려 했으나 잘되지 않았음.
+fs.watch(filename, function(){
+    console.log('sending response content of Watch');
+    responder.send(JSON.stringify({
+        type: 'changed',
+        file: filename,
+        timestamp: Date.now()
+    }));
+});
+*/
 responder.bind('tcp://127.0.0.1:5433', function(err){
     console.log("Listening for zmq requesters .... ");
 });
@@ -33,3 +45,4 @@ process.on("SIGINT", function(){
     console.log('Shutting down ...');
     responder.close();
 });
+
