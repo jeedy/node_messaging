@@ -6,7 +6,7 @@ const
 
     requester = zmq.socket('req');
 
-requester.on("meessage", function(data){
+requester.on("message", function(data){
     let response = JSON.parse(data);
     console.log("Received response: ", response);
 
