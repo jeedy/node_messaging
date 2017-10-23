@@ -19,4 +19,3 @@ console.log('sending request for ', filename);
 requester.send(JSON.stringify({
     path: filename
 }));
-
