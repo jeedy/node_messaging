@@ -28,6 +28,9 @@ responder.on('message',function(data){
 
 /*
     쌍방향 통신을 만드려 했으나 잘되지 않았음.
+    zmq.socket으로 response 객체를 받았기 때문에 브로드캐스트가 불가능하다
+    zmq.socket으로 publisher 객체를 받아야 브로드캐스트가 가능하다.
+    
 fs.watch(filename, function(){
     console.log('sending response content of Watch');
     responder.send(JSON.stringify({
